@@ -164,25 +164,16 @@ export default function App() {
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    console.log("CLICKED:", href);
-
     e.preventDefault();
-
-    const target = document.querySelector(href);
-
-    console.log("TARGET:", target);
-
-    if (!target) {
-      console.error("Section not found:", href);
-      return;
-    }
-
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-
     setMobileMenuOpen(false);
+
+    const id = href.replace("#", "");
+
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (!element) return;
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
   };
 
   // Direct Lead Submit from the main Contact section
@@ -261,7 +252,7 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8F5EE] text-[#2B2B2B] font-sans selection:bg-[#C8A45D] selection:text-white relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#F8F5EE] text-[#2B2B2B] font-sans selection:bg-[#C8A45D] selection:text-white relative">
       
       {/* HEADER & STICKY NAVBAR */}
       <header 
