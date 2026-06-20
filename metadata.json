@@ -1,0 +1,6 @@
+{
+  "name": "Decoruss Interiors",
+  "description": "Decoruss is a leading interior design company in Lucknow offering luxury home interiors, modular kitchens, office interiors, custom furniture, and turnkey solutions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
