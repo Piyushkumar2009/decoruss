@@ -160,6 +160,17 @@ export default function App() {
     setModalOpen(true);
   };
 
+  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const id = href.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
   // Direct Lead Submit from the main Contact section
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -231,6 +242,7 @@ export default function App() {
     { label: 'Projects', href: '#projects' },
     { label: 'Process', href: '#process' },
     { label: 'Testimonials', href: '#testimonials' },
+    { label: 'FAQ', href: '#faq' },
     { label: 'Contact', href: '#contact' }
   ];
 
@@ -249,7 +261,11 @@ export default function App() {
           <div className="flex items-center justify-between h-12">
             
             {/* Logo area */}
-            <a href="#home" className="flex items-center gap-2 group">
+            <a 
+              href="#home" 
+              onClick={(e) => handleScrollToSection(e, '#home')}
+              className="flex items-center gap-2 group"
+            >
               <div className="h-8 w-8 bg-[#1E1E1E] text-[#C8A45D] rounded-sm flex items-center justify-center font-serif text-lg font-bold shadow-md transition-colors duration-300">
                 D
               </div>
@@ -269,6 +285,7 @@ export default function App() {
                 <a
                   key={link.label}
                   href={link.href}
+                  onClick={(e) => handleScrollToSection(e, link.href)}
                   className="text-[11px] font-bold text-[#1E1E1E]/70 hover:text-[#C8A45D] tracking-[0.2em] transition-all uppercase duration-250 font-sans"
                 >
                   {link.label}
@@ -348,7 +365,10 @@ export default function App() {
                   <a
                     key={link.label}
                     href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      handleScrollToSection(e, link.href);
+                      setMobileMenuOpen(false);
+                    }}
                     className="py-2.5 px-3 rounded-lg hover:bg-[#F8F5EE] hover:text-[#C8A45D] text-sm font-semibold tracking-wide text-neutral-800 uppercase text-xs"
                   >
                     {link.label}
@@ -501,6 +521,7 @@ export default function App() {
               <div className="flex flex-wrap items-center gap-4">
                 <a
                   href="#projects"
+                  onClick={(e) => handleScrollToSection(e, '#projects')}
                   className="bg-neutral-950 text-white hover:bg-[#C8A45D] px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest transition-all duration-300 rounded hover:scale-105 active:scale-95 shadow-md hover:shadow-lg"
                 >
                   View Selected Work
@@ -1549,7 +1570,7 @@ export default function App() {
       </section>
 
       {/* FAQ SECTION */}
-      <section className="py-20 md:py-28 bg-[#FFFFFF] font-sans border-t border-neutral-100">
+      <section id="faq" className="py-20 md:py-28 bg-[#FFFFFF] font-sans border-t border-neutral-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           
           <div className="text-center max-w-3xl mx-auto mb-12">
@@ -2069,7 +2090,11 @@ export default function App() {
             
             {/* Logo and Tagline block */}
             <div className="lg:col-span-4 space-y-4">
-              <a href="#home" className="flex items-center gap-2">
+              <a 
+                href="#home" 
+                onClick={(e) => handleScrollToSection(e, '#home')}
+                className="flex items-center gap-2"
+              >
                 <div className="h-9 w-9 bg-[#C8A45D] text-white rounded-lg flex items-center justify-center font-serif text-lg font-bold">
                   D
                 </div>
@@ -2096,7 +2121,13 @@ export default function App() {
               <ul className="text-xs space-y-2.5 text-neutral-400 font-light font-sans">
                 {navLinks.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="hover:text-white transition-colors uppercase text-[10px] tracking-wide">{link.label}</a>
+                    <a 
+                      href={link.href} 
+                      onClick={(e) => handleScrollToSection(e, link.href)}
+                      className="hover:text-white transition-colors uppercase text-[10px] tracking-wide"
+                    >
+                      {link.label}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -2106,11 +2137,11 @@ export default function App() {
             <div className="lg:col-span-3 space-y-4">
               <h4 className="text-xs uppercase tracking-widest text-[#C8A45D] font-bold">Our Lucknow Services</h4>
               <ul className="text-xs space-y-2.5 text-neutral-400 font-light font-sans">
-                <li><a href="#services" className="hover:text-white transition-colors">Residential Home Turnkey</a></li>
-                <li><a href="#services" className="hover:text-white transition-colors">Premium BWR Modular Kitchens</a></li>
-                <li><a href="#services" className="hover:text-white transition-colors">Contemporary Master Bedroom</a></li>
-                <li><a href="#services" className="hover:text-white transition-colors">Biophilic Corporate Offices</a></li>
-                <li><a href="#services" className="hover:text-white transition-colors">Bespoke Furniture Suite</a></li>
+                <li><a href="#services" onClick={(e) => handleScrollToSection(e, '#services')} className="hover:text-white transition-colors">Residential Home Turnkey</a></li>
+                <li><a href="#services" onClick={(e) => handleScrollToSection(e, '#services')} className="hover:text-white transition-colors">Premium BWR Modular Kitchens</a></li>
+                <li><a href="#services" onClick={(e) => handleScrollToSection(e, '#services')} className="hover:text-white transition-colors">Contemporary Master Bedroom</a></li>
+                <li><a href="#services" onClick={(e) => handleScrollToSection(e, '#services')} className="hover:text-white transition-colors">Biophilic Corporate Offices</a></li>
+                <li><a href="#services" onClick={(e) => handleScrollToSection(e, '#services')} className="hover:text-white transition-colors">Bespoke Furniture Suite</a></li>
               </ul>
             </div>
 
