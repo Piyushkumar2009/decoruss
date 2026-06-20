@@ -164,16 +164,23 @@ export default function App() {
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
+    console.log("CLICKED:", href);
+
     e.preventDefault();
 
     const target = document.querySelector(href);
 
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
+    console.log("TARGET:", target);
+
+    if (!target) {
+      console.error("Section not found:", href);
+      return;
     }
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
 
     setMobileMenuOpen(false);
   };
